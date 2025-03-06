@@ -1,7 +1,6 @@
 import { createRouter, createWebHistory } from "vue-router";
 import Dashboard from "../views/Dashboard.vue";
 import Info from "../views/Info.vue";
-import Notifications from "../views/Notifications.vue";
 import Profile from "../views/Profile.vue";
 import SignIn from "../views/SignIn.vue";
 import SignUp from "../views/SignUp.vue";
@@ -21,11 +20,6 @@ const routes = [
     path: "/info",
     name: "Info",
     component: Info,
-  },
-  {
-    path: "/notifications",
-    name: "Notifications",
-    component: Notifications,
   },
   {
     path: "/profile",
