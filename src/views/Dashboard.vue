@@ -53,6 +53,9 @@ import MaterialButton from "@/components/MaterialButton.vue";
         </div>
       </div>
     </div>
+    <div class="card">
+  <wallet-multi-button></wallet-multi-button>
+    </div>
   </div>
 </template>
 <script>
