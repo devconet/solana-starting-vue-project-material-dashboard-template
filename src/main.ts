@@ -1,6 +1,7 @@
 import { createApp } from "vue";
 import App from "./App.vue";
-//import router from "./router";
+import store from "./store";
+import router from "./router/index.ts";
 import "./assets/css/nucleo-icons.css";
 import "./assets/css/nucleo-svg.css";
 import MaterialDashboard from "./material-dashboard.ts";
@@ -22,8 +23,8 @@ import MaterialDashboard from "./material-dashboard.ts";
   };*/
 
 const appInstance = createApp(App);
-//appInstance.use(store);
-//appInstance.use(router);
+appInstance.use(store);
+appInstance.use(router);
 appInstance.use(MaterialDashboard);
 //appInstance.use(SolanaWallets, walletOptions);
 appInstance.mount("#app");

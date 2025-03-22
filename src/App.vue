@@ -13,11 +13,11 @@ Coded by www.creative-tim.com
 * The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
 -->
 <template>
-  <sidenav
+<!--  <sidenav
     :custom_class="color"
     :class="[isRTL ? 'fixed-end' : 'fixed-start']"
     v-if="showSidenav"
-  />
+  />-->
   <main
     class="main-content position-relative max-height-vh-100 h-100 overflow-x-hidden"
   >
@@ -74,9 +74,9 @@ export default {
 
     const sidenav = document.getElementsByClassName("g-sidenav-show")[0];
 
-    if (window.innerWidth > 1200) {
-      sidenav.classList.add("g-sidenav-pinned");
-    }
+//    if (window.innerWidth > 1200) {
+//      sidenav.classList.add("g-sidenav-pinned");
+//    }
   },
 };
 </script>
