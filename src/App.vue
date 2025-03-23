@@ -13,11 +13,11 @@ Coded by www.creative-tim.com
 * The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
 -->
 <template>
-<!--  <sidenav
+<sidenav
     :custom_class="color"
     :class="[isRTL ? 'fixed-end' : 'fixed-start']"
     v-if="showSidenav"
-  />-->
+  />
   <main
     class="main-content position-relative max-height-vh-100 h-100 overflow-x-hidden"
   >
@@ -37,46 +37,40 @@ Coded by www.creative-tim.com
   </main>
 </template>
 <script>
+import { computed, onBeforeMount } from "vue";
+import { useStore } from "vuex";
 import Sidenav from "./examples/Sidenav/index.vue";
 import Configurator from "@/examples/Configurator.vue";
 import Navbar from "@/examples/Navbars/Navbar.vue";
 import AppFooter from "@/examples/Footer.vue";
-import { mapMutations, mapState } from "vuex";
 
-export default {
-  name: "App",
-  components: {
-    Sidenav,
-    Configurator,
-    Navbar,
-    AppFooter,
-  },
-  methods: {
-    ...mapMutations(["toggleConfigurator", "navbarMinimize"]),
-  },
-  computed: {
-    ...mapState([
-      "isRTL",
-      "color",
-      "isAbsolute",
-      "isNavFixed",
-      "navbarFixed",
-      "absolute",
-      "showSidenav",
-      "showNavbar",
-      "showFooter",
-      "showConfig",
-      "hideConfigButton",
-    ]),
-  },
-  beforeMount() {
-    this.$store.state.isTransparent = "bg-transparent";
+// Access Vuex store
+const store = useStore();
 
-    const sidenav = document.getElementsByClassName("g-sidenav-show")[0];
+// Computed properties (Replacing mapState)
+const isRTL = computed(() => store.state.isRTL);
+const color = computed(() => store.state.color);
+const isAbsolute = computed(() => store.state.isAbsolute);
+const isNavFixed = computed(() => store.state.isNavFixed);
+const navbarFixed = computed(() => store.state.navbarFixed);
+const absolute = computed(() => store.state.absolute);
+const showSidenav = computed(() => store.state.showSidenav);
+const showNavbar = computed(() => store.state.showNavbar);
+const showFooter = computed(() => store.state.showFooter);
+const showConfig = computed(() => store.state.showConfig);
+const hideConfigButton = computed(() => store.state.hideConfigButton);
 
-//    if (window.innerWidth > 1200) {
-//      sidenav.classList.add("g-sidenav-pinned");
-//    }
-  },
-};
+// Methods (Replacing mapMutations)
+const toggleConfigurator = () => store.commit("toggleConfigurator");
+const navbarMinimize = () => store.commit("navbarMinimize");
+
+// Lifecycle hook (Replacing beforeMount)
+onBeforeMount(() => {
+  store.state.isTransparent = "bg-transparent";
+
+  const sidenav = document.getElementsByClassName("g-sidenav-show")[0];
+  if (sidenav && window.innerWidth > 1200) {
+    sidenav.classList.add("g-sidenav-pinned");
+  }
+});
 </script>
