@@ -90,32 +90,27 @@
   <!-- End Navbar -->
 </template>
 
-<script>
+<script setup>
+import { computed, ref } from "vue";
 import downArrWhite from "@/assets/img/down-arrow-white.svg";
 import downArrBlack from "@/assets/img/down-arrow-dark.svg";
 
-export default {
-  name: "navbar",
-  data() {
-    return {
-      downArrWhite,
-      downArrBlack,
-    };
+// Reactive state (previously data())
+const downArrWhiteRef = ref(downArrWhite);
+const downArrBlackRef = ref(downArrBlack);
+
+// Define props
+const props = defineProps({
+  btnBackground: String,
+  isBlur: String,
+  darkMode: {
+    type: Boolean,
+    default: false,
   },
-  props: {
-    btnBackground: String,
-    isBlur: String,
-    darkMode: {
-      type: Boolean,
-      default: false,
-    },
-  },
-  computed: {
-    darkModes() {
-      return {
-        "text-dark": this.darkMode,
-      };
-    },
-  },
-};
+});
+
+// Computed property (previously inside computed)
+const darkModes = computed(() => ({
+  "text-dark": props.darkMode,
+}));
 </script>

@@ -32,25 +32,20 @@
     <sidenav-list />
   </aside>
 </template>
-<script>
+
+<script setup>
+import { computed, ref } from "vue";
+import { useStore } from "vuex";
 import SidenavList from "./SidenavList.vue";
 import logo from "@/assets/img/logo-ct.png";
 import logoDark from "@/assets/img/logo-ct-dark.png";
-import { mapState } from "vuex";
 
-export default {
-  name: "index",
-  components: {
-    SidenavList,
-  },
-  data() {
-    return {
-      logo,
-      logoDark,
-    };
-  },
-  computed: {
-    ...mapState(["isRTL", "sidebarType", "isDarkMode"]),
-  },
-};
+// Vuex store
+const store = useStore();
+const isRTL = computed(() => store.state.isRTL);
+const sidebarType = computed(() => store.state.sidebarType);
+const isDarkMode = computed(() => store.state.isDarkMode);
+
+// Reactive variables
+const logos = ref({ logo, logoDark });
 </script>

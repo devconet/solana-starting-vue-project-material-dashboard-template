@@ -36,7 +36,7 @@ Coded by www.creative-tim.com
     />
   </main>
 </template>
-<script>
+<script setup>
 import { computed, onBeforeMount } from "vue";
 import { useStore } from "vuex";
 import Sidenav from "./examples/Sidenav/index.vue";
