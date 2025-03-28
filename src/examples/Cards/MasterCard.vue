@@ -3,7 +3,7 @@
     <div
       class="overflow-hidden position-relative border-radius-xl"
       :style="{
-        backgroundImage: 'url(' + require('@/assets/img/curved14.jpg') + ')',
+        backgroundImage: 'url(${curved14})',
       }"
     >
       <span class="mask" :class="`bg-gradient-${card.background}`"></span>
@@ -39,42 +39,29 @@
   </div>
 </template>
 
-<script>
+<script setup>
+import curved14 from '@/assets/img/curved14.jpg';
+import { computed } from "vue";
+import { useStore } from "vuex";
 import MaterialAvatar from "@/components/MaterialAvatar.vue";
-import { mapState } from "vuex";
-import img1 from "../../assets/img/logos/mastercard.png";
+import img1 from "@/assets/img/logos/mastercard.png";
 
-export default {
-  name: "MasterCard",
-  components: {
-    MaterialAvatar,
+// Props
+defineProps({
+  card: {
+    type: Object,
+    default: () => ({
+      number: "4562   1122   4594   7852",
+      holderName: "Jack Peterson",
+      expiryDate: "11/22",
+      holderText: "Card Holder",
+      expiryText: "Expires",
+      background: "dark",
+    }),
   },
-  props: {
-    card: {
-      type: Object,
-      number: String,
-      holderName: String,
-      expiryDate: String,
-      holderText: String,
-      expiryText: String,
-      background: String,
-      default: () => ({
-        number: "4562   1122   4594   7852",
-        holderName: "Jack Peterson",
-        expiryDate: "11/22",
-        holderText: "Card Holder",
-        expiryText: "Expires",
-        background: "dark",
-      }),
-    },
-  },
-  data() {
-    return {
-      img1,
-    };
-  },
-  computed: {
-    ...mapState(["isRTL"]),
-  },
-};
+});
+
+// Vuex Store
+const store = useStore();
+const isRTL = computed(() => store.state.isRTL);
 </script>
